@@ -102,20 +102,22 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  uint8_t check_eeprom;
+  check_eeprom=at24c_Full_Check();
   while (1)
   {
-
+	 printf("\n\nNew While Loop");
+	 if(check_eeprom==0){
+		 printf("\nEEPROM Check Passed");
+	 }else if((check_eeprom==1)){
+		 printf("\nEEPROM Check Failed");
+	 }else{
+		 printf("\nUnknown error occurred");
+	 }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  count++;
-	  printf("\n== Begins loop %d ==",count);
-	  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);
-	  printf("\nLED on");
-	  HAL_Delay(500);
-	  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_RESET);
-	  printf("\nLED off");
-	  HAL_Delay(500);
+	  HAL_Delay(1000);
   }
   /* USER CODE END 3 */
 }

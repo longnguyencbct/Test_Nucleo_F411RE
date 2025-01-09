@@ -22,17 +22,17 @@ uint8_t at24c_Full_Check(void)
         // Show debug info
         char debug_str[50];
 
-        printf("== ADDRESS %d ==", addr);
+        printf("\n\n== ADDRESS %d ==", addr);
 //		lcd_ShowStr(10, 50, debug_str, WHITE, BLACK, 16, 1);
 
         // Write the test value
         at24c_WriteOneByte(addr, testValue);
-        printf("%d Write: %d", addr, testValue);
+        printf("\n%d Write: %d", addr, testValue);
 //        lcd_ShowStr(10, 70, debug_str, WHITE, BLACK, 16, 1);
 
         // Read back the value
         readValue = at24c_ReadOneByte(addr);
-        printf("%d Read: %d", addr, readValue);
+        printf("\n%d Read: %d", addr, readValue);
 //        lcd_ShowStr(10, 90, debug_str, WHITE, BLACK, 16, 1);
 
         // Verify the value
