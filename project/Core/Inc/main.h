@@ -61,7 +61,7 @@ void Error_Handler(void);
 #define LED_RED_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
-
+extern I2C_HandleTypeDef hi2c2;
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
