@@ -7,13 +7,13 @@
 
 #include "eeprom_24c256.h"
 
-uint8_t at24c_Full_Check(void)
+uint8_t at24c_Check(void)
 {
 	uint32_t addr;
     uint8_t testValue;  // Test value to write
     uint8_t readValue;
 
-    for (addr = 0; addr <= EE_SIZE; addr++)
+    for (addr = 0; addr <= EE_SIZE; addr+=1000)
     {
 //        lcd_Clear(BLACK); // Clear the screen for each iteration
 
@@ -40,7 +40,7 @@ uint8_t at24c_Full_Check(void)
         {
             return 1; // Error
         }
-//        HAL_Delay(100);
+//        HAL_Delay(1000);
     }
 
     return 0; // Success
@@ -81,22 +81,4 @@ void at24c_Write(uint16_t WriteAddr, uint8_t *pBuffer, uint16_t NumToWrite)
     }
 }
 
-void at24c_init(void)
-{
-    at24c_Check();
-}
-
-uint8_t at24c_Check(void)
-{
-    uint8_t temp;
-    temp = at24c_ReadOneByte(EE_SIZE);
-    if (temp == 0x55) return 0;
-    else
-    {
-        at24c_WriteOneByte(EE_SIZE, 0x55);
-        temp = at24c_ReadOneByte(EE_SIZE);
-        if (temp == 0x55) return 0;
-    }
-    return 1;
-}
 

@@ -102,18 +102,19 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  uint8_t check_eeprom;
-  check_eeprom=at24c_Full_Check();
+ uint8_t check_eeprom;
+ check_eeprom=at24c_Check();
+ if(check_eeprom==0){
+	 printf("\nEEPROM Check Passed");
+ }else if((check_eeprom==1)){
+	 printf("\nEEPROM Check Failed");
+ }else{
+	 printf("\nUnknown error occurred");
+ }
   while (1)
   {
 	 printf("\n\nNew While Loop");
-	 if(check_eeprom==0){
-		 printf("\nEEPROM Check Passed");
-	 }else if((check_eeprom==1)){
-		 printf("\nEEPROM Check Failed");
-	 }else{
-		 printf("\nUnknown error occurred");
-	 }
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
