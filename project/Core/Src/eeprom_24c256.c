@@ -67,20 +67,14 @@ uint8_t at24c_Check(void)
 
 
     addr = 10001;
-    union {
-    	uint32_t u32;
-        uint8_t  bytes[4];
-    } dataUnionWrite;
-    dataUnionWrite.u32 = 1234567;
-    at24c_Write(addr, dataUnionWrite.bytes, 4);
+    uint32_t big_int_write = 1234567890;
+    at24c_Write(addr, (uint8_t *)&big_int_write, 4);  // Write the 4 bytes
 
-    union {
-    	uint32_t u32;
-        uint8_t  bytes[4];
-    } dataUnionRead;
-    at24c_Read(addr, dataUnionRead.bytes, 4);
-    printf("\n\nRead big int: %d", (uint32_t)dataUnionRead.u32);
+    uint32_t big_int_read = 0;
+    at24c_Read(addr, (uint8_t *)&big_int_read, 4);    // Read the 4 bytes
 
+    // Print the 32-bit integer that was just read
+    printf("\n\nRead big int: %u", big_int_read);
 
 
     return 0; // Success

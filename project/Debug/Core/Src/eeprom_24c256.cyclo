@@ -1,5 +1,5 @@
 ../Core/Src/eeprom_24c256.c:10:9:at24c_Check	3
-../Core/Src/eeprom_24c256.c:89:9:at24c_ReadOneByte	1
-../Core/Src/eeprom_24c256.c:96:6:at24c_WriteOneByte	2
-../Core/Src/eeprom_24c256.c:105:6:at24c_Read	2
-../Core/Src/eeprom_24c256.c:114:6:at24c_Write	2
+../Core/Src/eeprom_24c256.c:83:9:at24c_ReadOneByte	1
+../Core/Src/eeprom_24c256.c:90:6:at24c_WriteOneByte	2
+../Core/Src/eeprom_24c256.c:99:6:at24c_Read	2
+../Core/Src/eeprom_24c256.c:108:6:at24c_Write	2
