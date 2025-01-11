@@ -64,7 +64,7 @@ main-build: Test_Nucleof411.elf secondary-outputs
 
 # Tool invocations
 Test_Nucleof411.elf Test_Nucleof411.map: $(OBJS) $(USER_OBJS) C:\D\University\Do_An_Tot_Nghiep\Test_NucleoF411\Test_Nucleo_F411RE\project\STM32F411RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Test_Nucleof411.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\D\University\Do_An_Tot_Nghiep\Test_NucleoF411\Test_Nucleo_F411RE\project\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Test_Nucleof411.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "Test_Nucleof411.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\D\University\Do_An_Tot_Nghiep\Test_NucleoF411\Test_Nucleo_F411RE\project\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Test_Nucleof411.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

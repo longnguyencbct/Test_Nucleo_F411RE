@@ -43,6 +43,46 @@ uint8_t at24c_Check(void)
 //        HAL_Delay(1000);
     }
 
+    addr=1;
+    char characterToWrite = 'A';
+    at24c_WriteOneByte(addr, (uint8_t)characterToWrite);
+
+    char characterRead;
+    characterRead = (char)at24c_ReadOneByte(addr);
+    printf("\n\nRead character: %c", characterRead);
+
+
+    // Write a string (including its null terminator).
+    addr=2;
+    char myString[] = "Hello EEPROM!";
+    uint16_t length = strlen(myString) + 1;  // +1 for the '\0'
+    at24c_Write(addr, (uint8_t*)myString, length);
+
+    // Read the string back
+    char readBuffer[20]; // big enough to hold our string
+    at24c_Read(addr, (uint8_t*)readBuffer, length);
+    printf("\n\nString read from EEPROM: %s", readBuffer);
+    printf("\nString length: %d", length);
+
+
+
+    addr = 10001;
+    union {
+    	uint32_t u32;
+        uint8_t  bytes[4];
+    } dataUnionWrite;
+    dataUnionWrite.u32 = 1234567;
+    at24c_Write(addr, dataUnionWrite.bytes, 4);
+
+    union {
+    	uint32_t u32;
+        uint8_t  bytes[4];
+    } dataUnionRead;
+    at24c_Read(addr, dataUnionRead.bytes, 4);
+    printf("\n\nRead big int: %d", (uint32_t)dataUnionRead.u32);
+
+
+
     return 0; // Success
 }
 
