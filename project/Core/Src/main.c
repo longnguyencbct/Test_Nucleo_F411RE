@@ -105,11 +105,11 @@ int main(void)
  uint8_t check_eeprom;
  check_eeprom=at24c_Check();
  if(check_eeprom==0){
-	 printf("\nEEPROM Check Passed");
+	 printf("\n\nEEPROM Check Passed");
  }else if((check_eeprom==1)){
-	 printf("\nEEPROM Check Failed");
+	 printf("\n\nEEPROM Check Failed");
  }else{
-	 printf("\nUnknown error occurred");
+	 printf("\n\nUnknown error occurred");
  }
   while (1)
   {

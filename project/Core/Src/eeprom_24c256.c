@@ -50,7 +50,7 @@ uint8_t at24c_Check(void)
     char characterRead;
     characterRead = (char)at24c_ReadOneByte(addr);
     printf("\n\nRead character: %c", characterRead);
-
+    printf("\nSize of character: %d bytes",sizeof(char));
 
     // Write a string (including its null terminator).
     addr=2;
@@ -61,8 +61,8 @@ uint8_t at24c_Check(void)
     // Read the string back
     char readBuffer[20]; // big enough to hold our string
     at24c_Read(addr, (uint8_t*)readBuffer, length);
-    printf("\n\nString read from EEPROM: %s", readBuffer);
-    printf("\nString length: %d", length);
+    printf("\n\nString read from EEPROM: \"%s\"", readBuffer);
+    printf("\nSize of String: %d bytes", length);
 
 
 
@@ -75,6 +75,21 @@ uint8_t at24c_Check(void)
 
     // Print the 32-bit integer that was just read
     printf("\n\nRead big int: %u", big_int_read);
+    printf("\nSize of big int: %d bytes",sizeof(uint32_t));
+
+    uint16_t floatAddr = 20001; // e.g. some EEPROM address
+    float float_write = 3.14159;
+    float float_read  = 0.0;
+
+    // Write the float:
+    at24c_Write(floatAddr, (uint8_t*)&float_write, sizeof(float));
+
+    // Read the float:
+    at24c_Read(floatAddr, (uint8_t*)&float_read, sizeof(float));
+
+    // Print
+    printf("\n\nFloat read from EEPROM: %f", float_read);
+    printf("\nSize of float: %d bytes",sizeof(float));
 
 
     return 0; // Success
